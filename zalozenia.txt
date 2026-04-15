@@ -1,0 +1,84 @@
+----- SFML 3.0.2 -----
+
+----- NAZEWNICTWO -----
+
+Klasy i Struktury (Classes / Structs): PascalCase
+Przykłady: Player, WaveManager, AssaultRifle.
+
+Pliki: Tak samo jak klasy, które zawierają.
+Przykłady: Player.hpp, WaveManager.cpp.
+
+Zmienne lokalne i Parametry (Variables / Parameters): camelCase
+Przykłady: healthPoints, movementSpeed, elapsedTime.
+
+Pola klas (Member Variables): Prefiks m_ + camelCase. Dzięki temu od razu widać, że zmienna należy do obiektu, a nie jest zmienną lokalną.
+Przykłady: m_health, m_texture, m_playerPosition.
+
+Funkcje i Metody (Functions / Methods): camelCase zaczynające się od czasownika (JEDNA FUNKCJA MA ROBIC JEDNĄ RZECZ, MAX 60 LINIJEK, NAJLEPIEJ ROZBIJAC).
+Przykłady: update(), render(), takeDamage(), spawnEnemy().
+
+Stałe i Makra (Constants / Macros): UPPER_SNAKE_CASE
+Przykłady: MAX_ENEMIES_PER_WAVE, WINDOW_WIDTH.
+
+----- FOLDERY -----
+
+waveio/
+├── .github/
+├── assets/
+│   ├── fonts/
+│   ├── sounds/
+│   └── textures/
+├── cmake-build-debug/
+├── src/
+│   ├── core/
+│   ├── entities/
+│   ├── weapons/
+│   └── main.cpp
+├── .gitignore
+├── CMakeLists.txt
+├── LICENSE.md
+├── README.md
+├── todo.txt
+└── zalozenia.txt
+
+----- GIT -----
+master: tylko stabilny kod, taki ktory zawsze sie kompiluje
+develop: branch roboczy, do mergowania nowych funkcjonalnosci zanim wrzuci sie na maina
+!!! Nigdy nie piszemy kodu bezpośrednio na 'master' ani na 'develop'!
+Zawsze tworzymy osobną gałąź (Feature Branch) na każdą nową rzecz. !!!
+
+Jak pracowac:
+
+1. PRZYGOTOWANIE DO PRACY (Zawsze rób to przed napisaniem choćby linijki kodu!)
+Upewnij się, że masz najnowszą wersję gry, żeby nie nadpisać pracy:
+git checkout develop
+git pull origin develop
+
+2. TWORZENIE WŁASNEJ GAŁĘZI (Feature Branch)
+Stwórz nową gałąź na to, co zamierzasz teraz robić.
+Używaj przedrostka 'feature/' oraz nazw po angielsku, oddzielanych myślnikami.
+git checkout -b feature/player-movement
+
+3. PRACA I ZAPISYWANIE ZMIAN (Commity)
+Pisz kod. Gdy zrobisz coś, co działa, zapisz to. Możesz robić to wielokrotnie.
+Dodaj konkretne pliki:
+git add src/entities/Player.cpp src/entities/Player.hpp
+(lub dodaj wszystko: git add .)
+Zrób commit z jasnym opisem:
+git commit -m "Dodano poruszanie sie gracza (WSAD)"
+
+4. WYSYŁANIE ZMIAN NA GITHUBA
+Gdy skończysz całą funkcjonalność (lub po prostu kończysz pracę na dziś), wyślij swoją gałąź:
+git push -u origin feature/player-movement
+
+5. PULL REQUEST (PR) - Dodawanie kodu do gry
+- Wejdź na GitHuba.
+- Powinien pojawić się zielony przycisk "Compare & pull request" (lub zrób to ręcznie w zakładce Pull requests).
+- Upewnij się, że chcesz zmergować zmiany do DEVELOP (base: develop <- compare: feature/player-movement).
+- Niech kolega przejrzy kod i kliknie "Merge pull request".
+
+6. SPRZĄTANIE (Po zaakceptowaniu PR)
+Wróć do głównego nurtu, pobierz połączone zmiany i usuń swój stary branch:
+git checkout develop
+git pull origin develop
+git branch -d feature/player-movement
