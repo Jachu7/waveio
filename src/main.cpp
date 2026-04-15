@@ -1,8 +1,11 @@
 #include <SFML/Graphics.hpp>
 
+constexpr unsigned int WINDOW_WIDTH = 1920;
+constexpr unsigned int WINDOW_HEIGHT = 1080;
+
 int main()
 {
-	sf::RenderWindow window( sf::VideoMode( { 200, 200 } ), "SFML works!" );
+	sf::RenderWindow window( sf::VideoMode( { WINDOW_WIDTH, WINDOW_HEIGHT } ), "Waveio", sf::State::Fullscreen );
 	sf::CircleShape shape( 100.f );
 	shape.setFillColor( sf::Color::Green );
 
