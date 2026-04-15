@@ -1,0 +1,44 @@
+Legenda:
+[ ] - Do zrobienia
+[~] - W trakcie
+[x] - Zrobione
+
+--- KROK 1: Rdzeń Gry (Core) ---
+[ ] Utworzenie okna gry (SFML) i głównej pętli (Game Loop).
+[ ] Zarządzanie stanami gry (np. MainMenu, Gameplay, Shop, GameOver).
+[ ] Podstawowy system renderowania i obsługi zdarzeń (Input).
+[ ] Załadowanie podstawowych zasobów (AssetsManager: tekstury, czcionki).
+
+--- KROK 2: Gracz i Arena (Entities) ---
+[ ] Stworzenie klasy Player.
+[ ] Implementacja poruszania się (WASD) z uwzględnieniem granic areny.
+[ ] Podstawowe statystyki gracza (HP, Max HP, Speed).
+[ ] Kolizje na krawędziach mapy.
+
+--- KROK 3: Przeciwnicy i Fale (Systems / Entities) ---
+[ ] Stworzenie podstawowej klasy Enemy.
+[ ] Proste AI przeciwników (biegnięcie w linii prostej do gracza).
+[ ] Implementacja WaveManager (odliczanie czasu fali, limit przeciwników).
+[ ] System spawnowania przeciwników (poza ekranem lub na krawędziach areny).
+[ ] Zadawanie obrażeń graczowi przy kolizji z przeciwnikiem.
+
+--- KROK 4: Walka i Bronie (Weapons / Systems) ---
+[ ] Stworzenie klasy bazowej Weapon.
+[ ] System Auto-Aim (znajdowanie najbliższego wroga w zasięgu).
+[ ] Strzelanie pociskami (klasa Projectile) - broń dystansowa.
+[ ] Ataki wręcz (obszarowe zadawanie obrażeń) - broń melee.
+[ ] Cooldowny ataków (Attack Speed) i zadawanie obrażeń przeciwnikom.
+
+--- KROK 5: Elementy Roguelite (Ekonomia) ---
+[ ] Wypadanie "materiałów/kasy" z pokonanych wrogów (Pickups).
+[ ] Zbieranie kasy przez gracza (opcjonalnie: statystyka Pickup Range / magnes).
+[ ] Logika przejścia do sklepu po zakończeniu fali.
+[ ] Sklep: Losowanie broni i statystyk do kupienia.
+[ ] Ekwipunek: Możliwość posiadania do 6 broni jednocześnie.
+
+--- KROK 6: Interfejs i Polerka (UI / Assets) ---
+[ ] Wyświetlanie paska HP nad graczem / w rogu ekranu.
+[ ] Licznik czasu fali i zebranych materiałów.
+[ ] Tekst wyskakujących obrażeń (Floating Damage Text).
+[ ] Dodanie dźwięków (strzały, trafienia, level up).
+[ ] Ekrany końcowe (Zwycięstwo / Porażka).
