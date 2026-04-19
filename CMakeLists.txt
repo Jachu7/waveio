@@ -12,8 +12,31 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp)
+# Zbierz wszystkie pliki zrodlowe projektu
+add_executable(main
+    src/main.cpp
+    src/core/AssetManager.cpp
+    src/core/Camera.cpp
+    src/core/Game.cpp
+    src/core/MapBackground.cpp
+    src/entities/Player.cpp
+)
+
 target_compile_features(main PRIVATE cxx_std_17)
-target_link_libraries(main PRIVATE SFML::Graphics)
+target_link_libraries(main PRIVATE SFML::Graphics SFML::Audio)
+
+# Katalog src/ jako katalog include
+target_include_directories(main PRIVATE src)
+
+# Kopiowanie folderu assets – obok exe (build/bin/) i do build/ (na wypadek uruchomienia z build/)
+add_custom_command(TARGET main POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/assets
+        $<TARGET_FILE_DIR:main>/assets
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/assets
+        ${CMAKE_BINARY_DIR}/assets
+    COMMENT "Kopiowanie assets/..."
+)
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT main)
