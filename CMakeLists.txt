@@ -20,6 +20,7 @@ add_executable(main
     src/core/Game.cpp
     src/core/MapBackground.cpp
     src/entities/Player.cpp
+    src/ui/InGameInterface.cpp
 )
 
 target_compile_features(main PRIVATE cxx_std_17)

@@ -16,6 +16,7 @@ constexpr float VIEW_HEIGHT = MAP_HEIGHT * VIEWPORT_ZOOM_Y;
 constexpr float PLAYER_SCALE = 3.f; 
 constexpr float PLAYER_SPEED = 250.f;
 constexpr int PLAYER_MAX_HP = 100;
+constexpr int PLAYER_START_MONEY = 20;
 constexpr float PLAYER_START_X = MAP_WIDTH / 2.f;
 constexpr float PLAYER_START_Y = MAP_HEIGHT / 2.f;
 
@@ -23,4 +24,7 @@ namespace Paths
 {
     constexpr const char* TEXTURE_MAP = "assets/textures/mapa.png";
     constexpr const char* TEXTURE_PLAYER = "assets/textures/AnimationSheet.png";
+    constexpr const char* TEXTURE_COIN = "assets/textures/coin.png";
+    constexpr const char* TEXTURE_HEART = "assets/textures/heart.png";
+    constexpr const char* FONT_MAIN = "assets/fonts/ARCADECLASSIC.TTF";
 }

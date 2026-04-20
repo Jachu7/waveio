@@ -5,6 +5,8 @@
 #include "Camera.hpp"
 #include "MapBackground.hpp"
 #include "entities/Player.hpp"
+#include "ui/InGameInterface.hpp"
+#include <memory>
 
 class Game
 {
@@ -26,6 +28,7 @@ private:
     bool m_assetsLoaded;
     MapBackground m_mapBackground;
     Player m_player;
+    std::unique_ptr<InGameInterface> m_inGameInterface;
 
     sf::Clock m_clock;
 };

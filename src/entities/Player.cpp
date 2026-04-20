@@ -8,6 +8,7 @@ Player::Player()
     : m_sprite(AssetManager::getInstance().getTexture("player"))
     , m_speed(PLAYER_SPEED)
     , m_hp(PLAYER_MAX_HP)
+    , m_money(PLAYER_START_MONEY)
     , m_isMoving(false)
     , m_facingRight(true)
     , m_animationTime(0.f)
@@ -104,6 +105,11 @@ int Player::getHp() const
 float Player::getSpeed() const
 {
     return m_speed;
+}
+
+int Player::getMoney() const
+{
+    return m_money;
 }
 
 void Player::takeDamage(int amount)

@@ -14,6 +14,7 @@ public:
     sf::Vector2f getPosition() const;
     sf::Vector2f getCenter() const;    
     int getHp() const;
+    int getMoney() const;
     float getSpeed() const;
 
     void takeDamage(int amount);
@@ -27,6 +28,7 @@ private:
 
     float m_speed;
     int m_hp;
+    int m_money;
 
     bool m_isMoving;
     bool m_facingRight;

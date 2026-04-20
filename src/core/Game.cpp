@@ -11,6 +11,7 @@ Game::Game()
     , m_camera({VIEW_WIDTH, VIEW_HEIGHT}, {MAP_WIDTH, MAP_HEIGHT})
     , m_assetsLoaded(initAssets())
 {
+    m_inGameInterface = std::make_unique<InGameInterface>();
     m_window.setFramerateLimit(FRAMERATE_LIMIT);
 }
 
@@ -47,6 +48,9 @@ void Game::update(float deltaTime)
     m_player.update(deltaTime);
 
     m_camera.follow(m_player.getCenter());
+    
+    if (m_inGameInterface)
+        m_inGameInterface->update(m_player);
 }
 
 void Game::render()
@@ -58,7 +62,8 @@ void Game::render()
     m_player.render(m_window);
 
     m_window.setView(m_uiView);
-    // TODO: rysuj elementy HUD tutaj
+    if (m_inGameInterface)
+        m_inGameInterface->render(m_window);
 
     m_window.display();
 }
@@ -67,5 +72,8 @@ bool Game::initAssets()
 {
     AssetManager::getInstance().loadTexture("mapa", Paths::TEXTURE_MAP);
     AssetManager::getInstance().loadTexture("player", Paths::TEXTURE_PLAYER);
+    AssetManager::getInstance().loadTexture("coin", Paths::TEXTURE_COIN);
+    AssetManager::getInstance().loadTexture("heart", Paths::TEXTURE_HEART);
+    AssetManager::getInstance().loadFont("main_font", Paths::FONT_MAIN);
     return true;
 }
