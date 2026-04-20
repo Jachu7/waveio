@@ -37,7 +37,7 @@ Legenda:
 [ ] Ekwipunek: Możliwość posiadania do 6 broni jednocześnie.
 
 --- KROK 6: Interfejs i Polerka (UI / Assets) ---
-[ ] Wyświetlanie paska HP nad graczem / w rogu ekranu.
+[x] Wyświetlanie paska HP nad graczem / w rogu ekranu.
 [ ] Licznik czasu fali i zebranych materiałów.
 [ ] Tekst wyskakujących obrażeń (Floating Damage Text).
 [ ] Dodanie dźwięków (strzały, trafienia, level up).

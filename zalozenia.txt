@@ -82,3 +82,4 @@ Wróć do głównego nurtu, pobierz połączone zmiany i usuń swój stary branc
 git checkout develop
 git pull origin develop
 git branch -d feature/player-movement
+
