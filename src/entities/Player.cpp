@@ -18,6 +18,14 @@ Player::Player()
     m_sprite.setScale({PLAYER_SCALE, PLAYER_SCALE});
     m_sprite.setOrigin({12.f, 12.f});
     m_sprite.setPosition({PLAYER_START_X, PLAYER_START_Y});
+
+    // Hitbox: 10x16 px * skala, środek = origin sprite'a
+    m_hitbox.setSize({10.f * PLAYER_SCALE, 16.f * PLAYER_SCALE});
+    m_hitbox.setOrigin({5.f * PLAYER_SCALE, 4.f * PLAYER_SCALE});
+    m_hitbox.setFillColor(sf::Color(0, 255, 0, 80));        // zielony, półprzezroczysty
+    m_hitbox.setOutlineColor(sf::Color(0, 255, 0, 200));    // wyraźny kontur
+    m_hitbox.setOutlineThickness(1.f);
+    m_hitbox.setPosition(m_sprite.getPosition());
 }
 
 void Player::handleInput(float deltaTime)
@@ -80,11 +88,13 @@ void Player::update(float deltaTime)
 {
     updateAnimation(deltaTime);
     clampToMap();
+    m_hitbox.setPosition(m_sprite.getPosition());
 }
 
 void Player::render(sf::RenderWindow& window) const
 {
     window.draw(m_sprite);
+    window.draw(m_hitbox);
 }
 
 sf::Vector2f Player::getPosition() const
@@ -120,6 +130,11 @@ void Player::takeDamage(int amount)
 void Player::heal(int amount)
 {
     m_hp = std::min(PLAYER_MAX_HP, m_hp + amount);
+}
+
+void Player::addMoney(int amount)
+{
+    m_money += amount;
 }
 
 void Player::clampToMap()

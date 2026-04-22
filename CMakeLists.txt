@@ -20,6 +20,9 @@ add_executable(main
     src/core/Game.cpp
     src/core/MapBackground.cpp
     src/entities/Player.cpp
+    src/entities/enemy/Enemy.cpp
+    src/entities/enemy/GreenSlime.cpp
+    src/weapons/Arrow.cpp
     src/ui/InGameInterface.cpp
 )
 

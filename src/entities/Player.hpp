@@ -19,6 +19,7 @@ public:
 
     void takeDamage(int amount);
     void heal(int amount);
+    void addMoney(int amount);
 
 private:
     void clampToMap();
@@ -34,4 +35,6 @@ private:
     bool m_facingRight;
     float m_animationTime;
     int m_currentFrame;
+
+    sf::RectangleShape m_hitbox;
 };
