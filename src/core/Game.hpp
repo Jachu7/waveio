@@ -6,7 +6,10 @@
 #include "MapBackground.hpp"
 #include "entities/Player.hpp"
 #include "ui/InGameInterface.hpp"
+#include "entities/enemy/Enemy.hpp"
+#include "weapons/Arrow.hpp"
 #include <memory>
+#include <vector>
 
 class Game
 {
@@ -29,6 +32,11 @@ private:
     MapBackground m_mapBackground;
     Player m_player;
     std::unique_ptr<InGameInterface> m_inGameInterface;
+
+    std::vector<std::unique_ptr<Enemy>> m_enemies;
+    std::vector<std::unique_ptr<Arrow>> m_arrows;
+    float m_shootTimer;
+    float m_spawnTimer;
 
     sf::Clock m_clock;
 };

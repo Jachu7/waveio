@@ -26,5 +26,13 @@ namespace Paths
     constexpr const char* TEXTURE_PLAYER = "assets/textures/AnimationSheet.png";
     constexpr const char* TEXTURE_COIN = "assets/textures/coin.png";
     constexpr const char* TEXTURE_HEART = "assets/textures/heart.png";
+    constexpr const char* TEXTURE_ARROW = "assets/textures/Arrow.png";
     constexpr const char* FONT_MAIN = "assets/fonts/ARCADECLASSIC.TTF";
+    
+    constexpr const char* TEXTURE_SLIME_WALK_0 = "assets/textures/greenSlime/walk/walk_00.png";
+    constexpr const char* TEXTURE_SLIME_WALK_1 = "assets/textures/greenSlime/walk/walk_01.png";
+    constexpr const char* TEXTURE_SLIME_WALK_2 = "assets/textures/greenSlime/walk/walk_02.png";
+    constexpr const char* TEXTURE_SLIME_WALK_3 = "assets/textures/greenSlime/walk/walk_03.png";
+    constexpr const char* TEXTURE_SLIME_WALK_4 = "assets/textures/greenSlime/walk/walk_04.png";
+    constexpr const char* TEXTURE_SLIME_WALK_5 = "assets/textures/greenSlime/walk/walk_05.png";
 }
