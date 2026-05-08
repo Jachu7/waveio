@@ -1,7 +1,7 @@
 #include "Game.hpp"
 #include "AssetManager.hpp"
 #include "Constants.hpp"
-#include "entities/enemy/GreenSlime.hpp"
+#include "entities/enemies/GreenSlime.hpp"
 
 #include <iostream>
 #include <stdexcept>

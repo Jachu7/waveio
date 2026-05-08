@@ -6,7 +6,7 @@
 #include "MapBackground.hpp"
 #include "entities/Player.hpp"
 #include "ui/InGameInterface.hpp"
-#include "entities/enemy/Enemy.hpp"
+#include "entities/Enemy.hpp"
 #include "weapons/Arrow.hpp"
 #include <memory>
 #include <vector>
