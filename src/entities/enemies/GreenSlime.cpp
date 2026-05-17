@@ -21,7 +21,7 @@ GreenSlime::GreenSlime(sf::Vector2f startPos)
 
     // Force perfect 24x24 px bounds according to user requests
     sf::FloatRect bounds = m_sprite.getLocalBounds();
-    m_sprite.setScale({24.f / bounds.size.x, 24.f / bounds.size.y});
+    m_sprite.setScale({48.f / bounds.size.x, 48.f / bounds.size.y});
     
     // Set origin to center
     m_sprite.setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f});

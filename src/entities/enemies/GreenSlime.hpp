@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Enemy.hpp"
+#include "../Enemy.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
 
