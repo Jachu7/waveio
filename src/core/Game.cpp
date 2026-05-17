@@ -2,6 +2,7 @@
 #include "AssetManager.hpp"
 #include "Constants.hpp"
 #include "entities/enemies/GreenSlime.hpp"
+#include "WaveLoop.hpp" 
 
 #include <iostream>
 #include <stdexcept>
@@ -13,7 +14,7 @@ Game::Game()
     , m_camera({VIEW_WIDTH, VIEW_HEIGHT}, {MAP_WIDTH, MAP_HEIGHT})
     , m_assetsLoaded(initAssets())
     , m_shootTimer(0.f)
-    , m_spawnTimer(0.f)
+    , m_isWavePaused(true)
 {
     m_inGameInterface = std::make_unique<InGameInterface>();
     m_window.setFramerateLimit(FRAMERATE_LIMIT);
@@ -42,27 +43,27 @@ void Game::handleEvents()
         {
             if (key->code == sf::Keyboard::Key::Escape)
                 m_window.close();
+            else if (key->code == sf::Keyboard::Key::Space && m_isWavePaused)
+            {
+                m_isWavePaused = false;
+            }
         }
     }
 }
 
 void Game::update(float deltaTime)
 {
+    if (m_inGameInterface)//Update in-game interface so when game is paused we can still see player stats
+        m_inGameInterface->update(m_player, m_waveLoop.getWaveNumber());
+
+    if (m_isWavePaused)//Pause game while the screen after wave is on
+        return;
+
     m_player.handleInput(deltaTime);
     m_player.update(deltaTime);
 
     // Enemy Spawning Logika
-    m_spawnTimer += deltaTime;
-    if (m_spawnTimer >= 0.5f) // spawnuje co 0.5 sekundy
-    {
-        static std::random_device rd;
-        static std::mt19937 mt(rd());
-        static std::uniform_real_distribution<float> dist_x(0.f, MAP_WIDTH);
-        static std::uniform_real_distribution<float> dist_y(0.f, MAP_HEIGHT);
-        
-        m_enemies.push_back(std::make_unique<GreenSlime>(sf::Vector2f(dist_x(mt), dist_y(mt))));
-        m_spawnTimer = 0.f;
-    }
+    m_waveLoop.WaveSystem(deltaTime, m_enemies);
 
     // Shooting logika
     m_shootTimer += deltaTime;
@@ -135,8 +136,11 @@ void Game::update(float deltaTime)
 
     m_camera.follow(m_player.getCenter());
     
-    if (m_inGameInterface)
-        m_inGameInterface->update(m_player);
+    if (m_waveLoop.isWaveComplete())//Initializing next wave 
+    {
+        m_isWavePaused = true;
+        m_waveLoop.startNextWave();
+    }
 }
 
 void Game::render()
@@ -157,6 +161,34 @@ void Game::render()
     m_window.setView(m_uiView);
     if (m_inGameInterface)
         m_inGameInterface->render(m_window);
+
+    if (m_isWavePaused)//Wave pausee screen
+    {
+        sf::RectangleShape popup(sf::Vector2f(600.f, 400.f));
+        popup.setFillColor(sf::Color(50, 50, 50, 200));
+        popup.setPosition({(WINDOW_WIDTH - 600.f) / 2.f, (WINDOW_HEIGHT - 400.f) / 2.f});
+        popup.setOutlineThickness(5.f);
+        popup.setOutlineColor(sf::Color::White);
+        m_window.draw(popup);
+
+        sf::Text title(AssetManager::getInstance().getFont("main_font"));
+        title.setString("Wave " + std::to_string(m_waveLoop.getWaveNumber()));
+        title.setCharacterSize(60);
+        title.setFillColor(sf::Color::Yellow);
+        sf::FloatRect textRect = title.getLocalBounds();
+        title.setOrigin({textRect.position.x + textRect.size.x / 2.0f, textRect.position.y + textRect.size.y / 2.0f});
+        title.setPosition({WINDOW_WIDTH / 2.0f, WINDOW_HEIGHT / 2.0f - 50.f});
+        m_window.draw(title);
+
+        sf::Text prompt(AssetManager::getInstance().getFont("main_font"));
+        prompt.setString("Press SPACE to start");
+        prompt.setCharacterSize(30);
+        prompt.setFillColor(sf::Color::White);
+        sf::FloatRect promptRect = prompt.getLocalBounds();
+        prompt.setOrigin({promptRect.position.x + promptRect.size.x / 2.0f, promptRect.position.y + promptRect.size.y / 2.0f});
+        prompt.setPosition({WINDOW_WIDTH / 2.0f, WINDOW_HEIGHT / 2.0f + 50.f});
+        m_window.draw(prompt);
+    }
 
     m_window.display();
 }

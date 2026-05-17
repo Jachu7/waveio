@@ -22,8 +22,10 @@ add_executable(main
     src/entities/Player.cpp
     src/entities/Enemy.cpp
     src/entities/enemies/GreenSlime.cpp
+    src/entities/enemies/RedSlime.cpp
     src/weapons/Arrow.cpp
     src/ui/InGameInterface.cpp
+    src/core/WaveLoop.cpp
 )
 
 target_compile_features(main PRIVATE cxx_std_17)

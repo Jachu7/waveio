@@ -8,6 +8,7 @@
 #include "ui/InGameInterface.hpp"
 #include "entities/Enemy.hpp"
 #include "weapons/Arrow.hpp"
+#include "WaveLoop.hpp"
 #include <memory>
 #include <vector>
 
@@ -36,7 +37,9 @@ private:
     std::vector<std::unique_ptr<Enemy>> m_enemies;
     std::vector<std::unique_ptr<Arrow>> m_arrows;
     float m_shootTimer;
-    float m_spawnTimer;
 
     sf::Clock m_clock;
+
+    WaveLoop m_waveLoop;
+    bool m_isWavePaused;
 };
