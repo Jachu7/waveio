@@ -8,6 +8,7 @@ InGameInterface::InGameInterface()
     , m_heartIcon(AssetManager::getInstance().getTexture("heart"))
     , m_moneyText(AssetManager::getInstance().getFont("main_font"))
     , m_healthText(AssetManager::getInstance().getFont("main_font"))
+    , m_waveText(AssetManager::getInstance().getFont("main_font"))
     , m_maxHp(PLAYER_MAX_HP)
 {
     // Money UI
@@ -37,9 +38,12 @@ InGameInterface::InGameInterface()
 
     m_healthText.setCharacterSize(25);
     m_healthText.setFillColor(sf::Color::White);
+
+    m_waveText.setCharacterSize(50);
+    m_waveText.setFillColor(sf::Color::White);
 }
 
-void InGameInterface::update(const Player& player)
+void InGameInterface::update(const Player& player, int waveNumber)
 {
     m_moneyText.setString(std::to_string(player.getMoney()));
     
@@ -58,6 +62,10 @@ void InGameInterface::update(const Player& player)
         60.f + (300.f - textBounds.size.x) / 2.f - textBounds.position.x,
         145.f + (35.f - textBounds.size.y) / 2.f - textBounds.position.y
     });
+    //Showing wave counter
+    m_waveText.setString("Wave  " + std::to_string(waveNumber));
+    sf::FloatRect waveBounds = m_waveText.getLocalBounds();
+    m_waveText.setPosition({ static_cast<float>(WINDOW_WIDTH) - waveBounds.size.x - 40.f, 20.f });
 }
 
 void InGameInterface::render(sf::RenderWindow& window) const
@@ -70,4 +78,5 @@ void InGameInterface::render(sf::RenderWindow& window) const
     window.draw(m_healthBarForeground);
     window.draw(m_heartIcon);
     window.draw(m_healthText);
+    window.draw(m_waveText);
 }

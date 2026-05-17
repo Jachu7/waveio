@@ -8,7 +8,7 @@ class InGameInterface
 public:
     InGameInterface();
 
-    void update(const Player& player);
+    void update(const Player& player, int waveNumber);
     void render(sf::RenderWindow& window) const;
 
 private:
@@ -20,6 +20,7 @@ private:
     sf::RectangleShape m_healthBarBackground;
     sf::RectangleShape m_healthBarForeground;
     sf::Text m_healthText;
+    sf::Text m_waveText;
 
     int m_maxHp;
 };
